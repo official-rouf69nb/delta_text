@@ -1,8 +1,7 @@
 name: delta_text
 description: A Flutter package for advanced delta formating in side TextField.
-version: 0.0.1
-author: Md. Abdur Rouf
-homepage:
+version: 0.0.2
+homepage: https://github.com/official-rouf69nb/delta_text
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
