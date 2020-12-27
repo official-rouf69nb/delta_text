@@ -1,0 +1,21 @@
+name: delta_text
+description: A Flutter package for advanced delta formating in side TextField.
+version: 0.0.1
+author: Md. Abdur Rouf
+homepage:
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  quill_delta: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
