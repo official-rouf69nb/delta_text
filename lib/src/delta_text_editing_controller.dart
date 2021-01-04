@@ -18,7 +18,7 @@ class DeltaTextEditingController extends TextEditingController {
     });
     return TextSpan(style: style, children: children);
   }
-
+  
   String _oldText = "";
   void changeText(String text){
     int _oldLength = _oldText.length -1;
@@ -123,7 +123,6 @@ class DeltaTextEditingController extends TextEditingController {
     try {
       doc.toList().forEach((element) {
         var data = element.value.toString().replaceAll('\n', "<br>");
-        // print("${element.value}=> ${element.attributes.toString()}");
         if(element.attributes == null) {
           result += data;
         }else{
@@ -138,12 +137,11 @@ class DeltaTextEditingController extends TextEditingController {
       });
     }catch (e) {
     }
-
-
     return result;
   }
-  void setHtmlTest(String rawHtml){
-    if(rawHtml != null){
+
+  void setHtml(String value){
+    if(value != null){
       try {
         final String lineBreak = '<br>';
         final String onlyRead = '<span style="color: red;">';
@@ -151,7 +149,7 @@ class DeltaTextEditingController extends TextEditingController {
         final String onlyStrike = '<s>';
 
         var delta = Delta();
-        var segmentedHtml = rawHtml.replaceAll('<span class="ql-cursor"></span>', '').replaceFirst('<p>', '').split('<p>').map((e) => e.replaceAll('<p>', '').replaceAll('</p>', '')).toList();
+        var segmentedHtml = value.replaceAll('<span class="ql-cursor"></span>', '').replaceFirst('<p>', '').split('<p>').map((e) => e.replaceAll('<p>', '').replaceAll('</p>', '')).toList();
         segmentedHtml.asMap().forEach((index,element) {
           if(index != 0){
             delta.insert('\n');

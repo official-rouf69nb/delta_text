@@ -5,9 +5,18 @@ class DeltaText extends StatelessWidget {
   final String htmlText;
   final TextStyle textStyle;
   final TextAlign textAlign;
+  final TextOverflow overflow;
+  final int maxLines;
 
   final Delta _delta = Delta();
-  DeltaText({Key key, this.htmlText, this.textStyle, this.textAlign,}) {
+  DeltaText({
+    Key key,
+    this.htmlText,
+    this.textStyle,
+    this.textAlign,
+    this.overflow = TextOverflow.clip,
+    this.maxLines,
+  }){
     try {
       final String lineBreak = '<br>';
       final String onlyRead = '<span style="color: red;">';
@@ -21,8 +30,12 @@ class DeltaText extends StatelessWidget {
         }
         element.split('</span>').forEach((a) {
           a.split('</s>').forEach((z) {
-            z.split('<br>').forEach((x) {
+            bool _hasLineBreak = z.contains(lineBreak);
+            z.split('<br>').asMap().forEach((index,x) {
               if(x.isNotEmpty) {
+                if(index != 0 && _hasLineBreak){
+                  _delta.insert('\n');
+                }
                 if(x.contains(lineBreak)){
                   var prefix = x.substring(0,x.lastIndexOf(lineBreak));
                   var postfix = x.substring(x.lastIndexOf(lineBreak)+lineBreak.length);
@@ -78,6 +91,9 @@ class DeltaText extends StatelessWidget {
       }
     });
     return RichText(
+      maxLines: maxLines,
+      overflow: overflow,
+      textAlign: textAlign,
       text: TextSpan(style: textStyle, children: children),
     );
   }
