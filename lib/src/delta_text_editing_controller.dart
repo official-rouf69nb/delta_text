@@ -156,7 +156,11 @@ class DeltaTextEditingController extends TextEditingController {
           }
           element.split('</span>').forEach((a) {
             a.split('</s>').forEach((z) {
-              z.split('<br>').forEach((x) {
+              bool _hasLineBreak = z.contains(lineBreak);
+              z.split('<br>').asMap().forEach((index,x) {
+                if(index != 0 && _hasLineBreak){
+                  delta.insert('\n');
+                }
                 if(x.isNotEmpty) {
                   if(x.contains(lineBreak)){
                     var prefix = x.substring(0,x.lastIndexOf(lineBreak));

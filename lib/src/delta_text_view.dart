@@ -32,10 +32,10 @@ class DeltaText extends StatelessWidget {
           a.split('</s>').forEach((z) {
             bool _hasLineBreak = z.contains(lineBreak);
             z.split('<br>').asMap().forEach((index,x) {
+              if(index != 0 && _hasLineBreak){
+                _delta.insert('\n');
+              }
               if(x.isNotEmpty) {
-                if(index != 0 && _hasLineBreak){
-                  _delta.insert('\n');
-                }
                 if(x.contains(lineBreak)){
                   var prefix = x.substring(0,x.lastIndexOf(lineBreak));
                   var postfix = x.substring(x.lastIndexOf(lineBreak)+lineBreak.length);

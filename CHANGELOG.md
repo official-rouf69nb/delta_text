@@ -1,3 +1,6 @@
+## [0.0.5] - 28 December 2020
+* DeltaText line break bug fixed.
+
 ## [0.0.4] - 28 December 2020
 
 * DeltaText line break bug fixed.
